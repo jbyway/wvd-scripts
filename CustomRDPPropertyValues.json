@@ -1,0 +1,164 @@
+[
+    {
+        "RDPsetting": "alternate shell:s:",
+        "ConfiguredValue":"",
+        "Description": "Determines whether a program starts automatically when you connect with RDP. To specify an alternate shell, enter a valid path to an executable file for the value, such as \"C:\\ProgramFiles\\Office\\word.exe\". This setting also determines which path or alias of the Remote Application to be started at connection time if RemoteApplicationMode is enabled.",
+        "AvailableValues": "\"C:\\ProgramFiles\\Office\\word.exe\"",
+        "Default": "",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "audiocapturemode:i:",
+        "ConfiguredValue":"1",
+        "Description": "Indicates whether audio input/output redirection is enabled.",
+        "AvailableValues": "0: Disable audio capture from the local device. 1: Enable audio capture from the local device and redirection to an audio application in the remote session",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "audiomode:i:",
+        "ConfiguredValue":"2",
+        "Description": "Determines whether the local or remote machine plays audio.",
+        "AvailableValues": "0: Play sounds on local computer (Play on this computer). 1: Play sounds on remote computer (Play on remote computer). 2: Do not play sounds (Do not play)",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "bandwidthautodetect:i:",
+        "ConfiguredValue":"1",
+        "Description": "Determines whether automatic network type detection is enabled",
+        "AvailableValues": "0: Disable automatic network type detection. 1: Enable automatic network type detection",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "compression:i:",
+        "ConfiguredValue":"",
+        "Description": "Determines whether bulk compression is enabled when it is transmitted by RDP to the local computer.",
+        "AvailableValues": "0: Disable RDP bulk compression.1: Enable RDP bulk compression",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "desktop size id:i:",
+        "ConfiguredValue":"1",
+        "Description": "Specifies dimensions of the remote session desktop from a set of pre-defined options. This setting is overridden if either desktopheight or desktopwidth are specified.",
+        "AvailableValues": "0: 640x480, 1: 800x600, 2: 1024x768, 3: 1280x1024",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "disableclipboardredirection:i:",
+        "ConfiguredValue":"1",
+        "Description": "Determines whether Clipboard redirection is enabled when connecting to the remote computer.",
+        "AvailableValues": "0: Clipboard redirection is enabled, 1: Clipboard redirection is not enabled",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "drivestoredirect:s:",
+        "ConfiguredValue":"",
+        "Description": "Determines which local disk drives on the client computer will be redirected and available in the remote session.",
+        "AvailableValues": "No value specified: don't redirect any drives; * : Redirect all disk drives including drives that are connected later DynamicDrives: redirect any drives that are connected later  The drive and labels for one or more drives: redirect the specified drive(s)",
+        "Default": "",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "encode redirected video capture:i:",
+        "ConfiguredValue":"",
+        "Description": "Enables or disables encoding of redirected video.",
+        "AvailableValues": "0: Disable encoding of redirected video; 1: Enable encoding of redirected video",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "networkautodetect:i:",
+        "ConfiguredValue":"",
+        "Description": "Determines whether or not to use automatic network bandwidth detection. Requires the option�bandwidthautodetect�to be set and correlates with�connection type�7.",
+        "AvailableValues": "0: Don't use automatic network bandwidth detection; 1: Use automatic network bandwidth detection",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "redirectclipboard:i:",
+        "ConfiguredValue":"0",
+        "Description": "Determines whether the clipboard on the local computer will be redirected and available in the remote session.",
+        "AvailableValues": "0: Clipboard on local computer isn't available in remote session; 1: Clipboard on local computer is available in remote session",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "redirected video capture encoding quality:i:",
+        "ConfiguredValue":"",
+        "Description": "Controls the quality of encoded video.",
+        "AvailableValues": "0: High compression video. Quality may suffer when there is a lot of motion; 1: Medium compression; 2: Low compression video with high picture quality",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "redirectprinters:i:",
+        "ConfiguredValue":"0",
+        "Description": "Determines whether printers configured on the client computer will be redirected and available in the remote session when you connect to a remote computer by using Remote Desktop Connection.",
+        "AvailableValues": "0: The printers on the local computer are not available in the remote session; 1: The printers on the local computer are available in the remote session",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "redirectsmartcards:i:",
+        "ConfiguredValue":"0",
+        "Description": "Determines whether smart card devices on the client computer will be redirected and available in the remote session when you connect to a remote computer.",
+        "AvailableValues": "0: The smart card device on the local computer is not available in the remote session; 1: The smart card device on the local computer is available in the remote session",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "screen mode id:i:",
+        "ConfiguredValue":"1",
+        "Description": "Determines whether the remote session window appears full screen when you connect to the remote computer by using Remote Desktop Connection.",
+        "AvailableValues": "1: The remote session will appear in a window; 2: The remote session will appear full screen",
+        "Default": "2",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": "x"
+    },
+    {
+        "RDPsetting": "smart sizing:i:",
+        "ConfiguredValue":"1",
+        "Description": "Determines whether or not the client computer can scale the content on the remote computer to fit the window size of the client computer.",
+        "AvailableValues": "0: The client window display won't scale when resized; 1: The client window display will scale when resized",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "use multimon:i:",
+        "ConfiguredValue":"0",
+        "Description": "Configures multiple monitor support when you connect to the remote computer by using Remote Desktop Connection.",
+        "AvailableValues": "0: Don't enable multiple monitor support. 1: Enable multiple monitor support",
+        "Default": "0",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    },
+    {
+        "RDPsetting": "videoplaybackmode:i:",
+        "ConfiguredValue":"",
+        "Description": "Determines if Remote Desktop Connection will use RDP-efficient multimedia streaming for video playback.",
+        "AvailableValues": "0: Don't use RDP efficient multimedia streaming for video playback. 1: Use RDP-efficient multimedia streaming for video playback when possible",
+        "Default": "1",
+        "WindowsVirtualDesktop": "x",
+        "HTML5": ""
+    }
+]
