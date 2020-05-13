@@ -1,0 +1,43 @@
+{
+    "properties": {
+        "roleName": "WVD - Application Group Contributor",
+        "description": "Provide access to create and delete Application Groups in an existing WVD Workspace. Allows user assignment to the AppGroup and read permissions of the resources in the resource group. ",
+        "assignableScopes": [
+            "/subscriptions/{subscriptionId}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.DesktopVirtualization/workspaces/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/startmenuitems/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/delete",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/delete",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/delete",
+                    "Microsoft.DesktopVirtualization/applicationgroups/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/read",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/deployments/exportTemplate/action",
+                    "Microsoft.Resources/deployments/whatIf/action",
+                    "Microsoft.Resources/deployments/cancel/action",
+                    "Microsoft.Resources/deployments/read",
+                    "Microsoft.Resources/deployments/write",
+                    "Microsoft.Resources/deployments/validate/action",
+                    "Microsoft.Resources/tags/write",
+                    "Microsoft.Resources/tags/read",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.DesktopVirtualization/workspaces/write"
+                ],
+                "notActions": [],
+                "dataActions": [
+                    "Microsoft.DesktopVirtualization/applicationGroups/useApplications/action"
+                ],
+                "notDataActions": []
+            }
+        ]
+    }
+}
