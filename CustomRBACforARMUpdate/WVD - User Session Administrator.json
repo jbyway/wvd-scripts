@@ -1,0 +1,38 @@
+{
+    "properties": {
+        "roleName": "WVD - User Session Administrator",
+        "description": "Administer user sessions (logoff/message etc). ",
+        "assignableScopes": [
+            "/subscriptions/{subscriptionId}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.DesktopVirtualization/workspaces/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/startmenuitems/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/read",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/tags/read",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/delete"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
