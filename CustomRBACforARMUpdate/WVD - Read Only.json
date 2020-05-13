@@ -1,0 +1,35 @@
+{
+    "properties": {
+        "roleName": "WVD - Read Only",
+        "description": "Read only access to the WVD resources. ",
+        "assignableScopes": [
+            "/subscriptions/{subscriptionId}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.DesktopVirtualization/workspaces/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/startmenuitems/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/read",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/tags/read",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
