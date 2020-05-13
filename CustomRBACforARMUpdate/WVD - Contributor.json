@@ -1,0 +1,57 @@
+{
+    "properties": {
+        "roleName": "WVD - Contributor",
+        "description": "Allow contributor access to WVD environment but no delete ability. ",
+        "assignableScopes": [
+            "/subscriptions/{subscriptionId}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.DesktopVirtualization/workspaces/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/startmenuitems/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/read",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/deployments/exportTemplate/action",
+                    "Microsoft.Resources/deployments/whatIf/action",
+                    "Microsoft.Resources/deployments/cancel/action",
+                    "Microsoft.Resources/deployments/read",
+                    "Microsoft.Resources/deployments/write",
+                    "Microsoft.Resources/deployments/validate/action",
+                    "Microsoft.Resources/tags/write",
+                    "Microsoft.Resources/tags/read",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.DesktopVirtualization/workspaces/write",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/write",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/delete",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/write",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/write",
+                    "Microsoft.DesktopVirtualization/hostpools/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/register/action"
+                ],
+                "notActions": [],
+                "dataActions": [
+                    "Microsoft.DesktopVirtualization/applicationGroups/useApplications/action"
+                ],
+                "notDataActions": []
+            }
+        ]
+    }
+}
