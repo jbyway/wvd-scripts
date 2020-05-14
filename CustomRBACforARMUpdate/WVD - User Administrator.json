@@ -1,0 +1,43 @@
+{
+    "properties": {
+        "roleName": "WVD - User Administrator",
+        "description": "Apply this to allow user assignment to the WVD Application Groups. Only apply this to the WVD Workspace using IAM controls and not to the resource group directly",
+        "assignableScopes": [
+            "/subscriptions/{SubscriptionId}/resourceGroups/{YourWVDResourceGroup}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.DesktopVirtualization/workspaces/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/startmenuitems/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/read",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/tags/read",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/write",
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/delete",
+                    "Microsoft.Authorization/roleAssignments/delete",
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/desktops/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/applications/write",
+                    "Microsoft.DesktopVirtualization/applicationgroups/write"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
