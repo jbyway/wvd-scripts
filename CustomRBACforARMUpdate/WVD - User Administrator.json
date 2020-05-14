@@ -1,7 +1,7 @@
 {
     "properties": {
         "roleName": "WVD - User Administrator",
-        "description": "Apply this to allow user assignment to the WVD Application Groups. Only apply this to the WVD Workspace using IAM controls and not to the resource group directly",
+        "description": "Apply this to allow user assignment to the WVD Application Groups. Only apply this to the WVD Application Group resources (RemoteApp/Desktop)  using IAM controls and not to the resource group directly",
         "assignableScopes": [
             "/subscriptions/{SubscriptionId}/resourceGroups/{YourWVDResourceGroup}"
         ],
