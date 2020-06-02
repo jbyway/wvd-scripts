@@ -18,7 +18,6 @@
                     "Microsoft.Authorization/roleAssignments/read",
                     "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/logDefinitions/read",
                     "Microsoft.DesktopVirtualization/workspaces/providers/Microsoft.Insights/diagnosticSettings/read",
-                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/read",
                     "Microsoft.DesktopVirtualization/hostpools/sessionhosts/read",
                     "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/logDefinitions/read",
                     "Microsoft.DesktopVirtualization/hostpools/providers/Microsoft.Insights/diagnosticSettings/read",
@@ -26,8 +25,7 @@
                     "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/logDefinitions/read",
                     "Microsoft.DesktopVirtualization/applicationgroups/providers/Microsoft.Insights/diagnosticSettings/read",
                     "Microsoft.DesktopVirtualization/hostpools/sessionhosts/write",
-                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/write",
-                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/delete"
+                    "Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions/*"
                 ],
                 "notActions": [],
                 "dataActions": [],
