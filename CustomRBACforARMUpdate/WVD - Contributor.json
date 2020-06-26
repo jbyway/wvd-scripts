@@ -47,9 +47,7 @@
                     "Microsoft.DesktopVirtualization/register/action"
                 ],
                 "notActions": [],
-                "dataActions": [
-                    "Microsoft.DesktopVirtualization/applicationGroups/useApplications/action"
-                ],
+                "dataActions": [],
                 "notDataActions": []
             }
         ]
