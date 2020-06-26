@@ -33,9 +33,7 @@
                     "Microsoft.DesktopVirtualization/workspaces/write"
                 ],
                 "notActions": [],
-                "dataActions": [
-                    "Microsoft.DesktopVirtualization/applicationGroups/useApplications/action"
-                ],
+                "dataActions": [],
                 "notDataActions": []
             }
         ]
