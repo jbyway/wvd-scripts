@@ -1,3 +1,6 @@
+# The scripts included here for Custom RDP Settings and Remote App publishing are intended for WVD Classic (non-ARM) environments and haven't been modified yet to support the July 2020 Update that natively supports ARM environments. For Remote Apps check out the built in ability to publish directly from the portal. 
+
+
 # wvd-scripts
 Scripts I've created to assist with Windows Virtual Desktop - this is my own work and is not officially supported by Microsoft. 
 
