@@ -1,0 +1,31 @@
+{
+  "type": "Microsoft.Resources/deploymentScripts",
+  "apiVersion": "2020-10-01",
+  "name": "runPowerShellInline",
+  "location": "[resourceGroup().location]",
+  "kind": "AzurePowerShell",
+  "properties": {
+    "azPowerShellVersion": "5.0",
+    "scriptContent": "
+        New-Item -Path 'C:\\BuildArtifacts' -ItemType Directory -Force | Out-Null
+        Invoke-WebRequest -uri https:\/\/chocolatey.org/install.ps1 -OutFile 'c:\\BuildArtifacts\\ChocoInstall.ps1'
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex 'c:\\BuildArtifacts\\chocoinstall.ps1'
+        choco install git.install -yes
+        Start-Sleep -Seconds 10
+        choco install putty.install -yes
+        Start-Sleep -Seconds 10
+        choco install sysinternals -yes
+        Start-Sleep -Seconds 10
+        choco install treesizefree -yes
+        Start-Sleep -Seconds 10
+        choco install procexp -yes
+        Start-Sleep -Seconds 10
+        choco install azure-cli -yes
+        Start-Sleep -Seconds 10
+        ",
+    "supportingScriptUris":[],
+    "timeout": "PT30M",
+    "cleanupPreference": "OnSuccess",
+    "retentionInterval": "P1D"
+  }
+}
