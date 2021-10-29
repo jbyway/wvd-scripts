@@ -1,5 +1,9 @@
 {
-  "type": "Microsoft.Resources/deploymentScripts",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "resources": [
+{
+"type": "Microsoft.Resources/deploymentScripts",
   "apiVersion": "2020-10-01",
   "name": "runPowerShellInline",
   "location": "[resourceGroup().location]",
@@ -28,4 +32,5 @@
     "cleanupPreference": "OnSuccess",
     "retentionInterval": "P1D"
   }
+}]
 }
