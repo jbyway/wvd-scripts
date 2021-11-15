@@ -1,5 +1,7 @@
 # Download and extract to script folder: https://github.com/ipinfo/cli/releases/download/ipinfo-2.2.0/ipinfo_2.2.0_windows_amd64.zip
 # Download and extract psping.exe to script folder: https://download.sysinternals.com/files/PSTools.zip 
+# https://github.com/blrchen/azure-data-lab/blob/main/Geographies.json - IP and location of each Azure Region
+
 
 $avdgwip = @()
 $msrdcpid = @()
@@ -42,19 +44,33 @@ $avdgwip, $msrdcpid = get-avdprocesses
 
 function get-avdgatewayinfo {
     [CmdletBinding()]Param()
+    $count = 0
+    $avdgwapiattempts = @()
+    $avdwebapiattempts = @()
+    # Retrieve the current AVD Gateway and region from Header
+    do {
+        $avdgwapi= Invoke-WebRequest -uri https://rdgateway.wvd.microsoft.com/api/health
+        $avdgwapiattempts += ($avdgwapi.Headers).'x-ms-wvd-service-region'
+        $avdwebapi= Invoke-WebRequest -uri https://rdweb.wvd.microsoft.com/api/health
+        $avdwebapiattempts += ($avdwebapi.Headers).'x-ms-wvd-service-region'
+        $count = $count + 1
+        $count
+    } while ($count -lt 100)
+    
 
     
     # Get AVD Gateway IP address and location details
-    $avdgwip = $avdgwapi.content | ConvertFrom-Json | Select-Object -ExpandProperty 'GatewayIp'
-    $avdgwregion = $avdgwapi.content | ConvertFrom-Json | Select-Object -ExpandProperty 'RegionUrl'
-    $avdgwcluster = $avdgwapi.content | ConvertFrom-Json | Select-Object -ExpandProperty 'ClusterUrl'
-    $avdgwregion = $avdgwregion.Substring(0, $avdgwregion.Length - 1)
-    $avdgwcluster = $avdgwcluster.Substring(0, $avdgwcluster.Length - 1)
-    Write-Verbose "#### AVD Gateway Details ####"
-    Write-Verbose "AVD Gateway IP: $avdgwip"
-    Write-Verbose "AVD Gateway Region: $avdgwregion"
-    Write-Verbose "AVD Gateway Cluster: $avdgwcluster"
-    Write-Verbose ""
+    
+    $avdgwinfo = ConvertFrom-Json $avdgwapi.Content
+    $avdgwapi.Headers.'X-AS-CurrentLoad'
+    $avdgwapi.Headers.'x-ms-wvd-service-region'
+
+    Write-Verbose "[AVD Gateway Details]"
+    "AVD Gateway IP: " + $avdgwip | Write-Verbose -Verbose
+    "AVD Gateway Region: " + $avdgwapi.Headers.'x-ms-wvd-service-region' | write-verbose -verbose
+    "AVD Gateway Region URL: " + $avdgwinfo.RegionUrl | write-verbose -verbose
+    "AVD Gateway Cluster URL: " + $avdgwinfo.ClusterUrl | write-verbose -verbose
+   
 
 }
 #Create empty array for tracert
@@ -69,12 +85,14 @@ function get-hopstogateway {
 # Obtain latency of MSRDC connection to remote AVD gateway for any open session
 #foreach ($gwip in $remoteavdgwip) {
     
-    Write-Verbose "[Begin PSPing to AVD Gateway IP: $avdgwip]`r`n"
+    Write-Verbose "[Begin PSPing to AVD Gateway IP: $avdgwip]`r`n" -Verbose
     
     if ($VerbosePreference -eq 'SilentlyContinue'){
     $latency = .\psping.exe -q ($avdgwip + ":443")}
     else{
-    Write-Verbose $latency = .\psping.exe ($avdgwip + ":443")
+    $latency = .\psping.exe ($avdgwip + ":443") | write-verbose -Verbose *>&1
+    #$latency = ping -c 4 $avdgwip | Out-String
+    
     }
     $pspingstats = ($latency[-2] -split ',').trim()
     $pspinglatency = ($latency[-1] -split ',').trim()
@@ -128,3 +146,8 @@ Write-Output ""
 Write-Verbose "Regional URL of resolved AVD Gateway"
 $avdgwapidetails = Invoke-WebRequest -Uri https://rdgateway.wvd.microsoft.com/api/health
 ($avdgwapidetails.Content) | ConvertFrom-Json | Select-Object -ExpandProperty 'RegionUrl' | Write-Verbose -Verbose
+
+
+#invoke-webrequest -uri https://management.azure.com/providers/Microsoft.Cdn/edgenodes?api-version=2019-12-31
+# https://docs.microsoft.com/en-us/azure/frontdoor/edge-locations-by-abbreviation 
+
