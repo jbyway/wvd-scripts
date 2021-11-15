@@ -1,7 +1,7 @@
 # Download and extract to script folder: https://github.com/ipinfo/cli/releases/download/ipinfo-2.2.0/ipinfo_2.2.0_windows_amd64.zip
 # Download and extract psping.exe to script folder: https://download.sysinternals.com/files/PSTools.zip 
 # https://github.com/blrchen/azure-data-lab/blob/main/Geographies.json - IP and location of each Azure Region
-
+# Test
 
 $avdgwip = @()
 $msrdcpid = @()
