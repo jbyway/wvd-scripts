@@ -1,10 +1,11 @@
 # Download and extract to script folder: https://github.com/ipinfo/cli/releases/download/ipinfo-2.2.0/ipinfo_2.2.0_windows_amd64.zip
 # Download and extract psping.exe to script folder: https://download.sysinternals.com/files/PSTools.zip 
 # https://github.com/blrchen/azure-data-lab/blob/main/Geographies.json - IP and location of each Azure Region
-# Test
 
-$avdgwip = @()
-$msrdcpid = @()
+
+#$avdgwip = @()
+#$msrdcpid = @()
+
 $tracertarray = @()
 
 function get-avdprocesses {
@@ -12,6 +13,8 @@ function get-avdprocesses {
     Param()
 
     $avdgwip = @()
+    $msrdcpid = @()
+
     # Get Process ID of MSRDC and IP address of the AVD Gateway in use by any sessions
     Write-Verbose "[Discovering current MSRD Process ID]"
     $msrdcpid = (Get-Process -Name msrdc).id
@@ -19,19 +22,14 @@ function get-avdprocesses {
     $msrdcpid | ForEach-Object {Write-Verbose "$_ `r`n"}
 
     Write-Verbose "[Discovering currently established AVD Gateway IP(s)]"
-    $avdgwip = (Get-NetTCPConnection -OwningProcess $msrdcpid -state Established).RemoteAddress | select-object -Unique
+    $avdgwip = (Get-NetTCPConnection -OwningProcess $msrdcpid -state Established) | select-object -Unique
     Write-Verbose "[Remote AVD Gateway IP(s) Connected]"
     $avdgwip | Foreach-Object {Write-Verbose "$_ `r"}
     
-    Write-Verbose "[Ending get-avdprocesses function and returning values]"
+    Write-Verbose "[Returning AVD GW IP and MSRDC PID]"
     return $avdgwip, $msrdcpid
 
 }
-
-$avdgwip, $msrdcpid = get-avdprocesses
-
-
-
 
 
 # Gather details of resolved AVD Gateway - this may not be the one you are using
@@ -43,22 +41,21 @@ $avdgwip, $msrdcpid = get-avdprocesses
 
 
 function get-avdgatewayinfo {
-    [CmdletBinding()]Param()
-    $count = 0
-    $avdgwapiattempts = @()
-    $avdwebapiattempts = @()
+    [CmdletBinding()]Param(
+        [Parameter(Mandatory=$true)]
+        [string]$avdgwip
+    )
+    #$count = 0
+    $avdgwapicall = @()
+    # $avdwebapiattempts = @()
     # Retrieve the current AVD Gateway and region from Header
-    do {
-        $avdgwapi= Invoke-WebRequest -uri https://rdgateway.wvd.microsoft.com/api/health
-        $avdgwapiattempts += ($avdgwapi.Headers).'x-ms-wvd-service-region'
-        $avdwebapi= Invoke-WebRequest -uri https://rdweb.wvd.microsoft.com/api/health
-        $avdwebapiattempts += ($avdwebapi.Headers).'x-ms-wvd-service-region'
-        $count = $count + 1
-        $count
-    } while ($count -lt 100)
-    
 
-    
+    $avdgwapi= Invoke-WebRequest  -Uri https://$avdgwip/api/health -Headers @{Host = "rdgateway.wvd.microsoft.com" }
+    $avdgwapiattempts += ($avdgwapi.Headers).'x-ms-wvd-service-region'
+       # $avdwebapi= Invoke-WebRequest -uri https://rdweb.wvd.microsoft.com/api/health
+       # $avdwebapiattempts += ($avdwebapi.Headers).'x-ms-wvd-service-region'
+
+   
     # Get AVD Gateway IP address and location details
     
     $avdgwinfo = ConvertFrom-Json $avdgwapi.Content
@@ -71,9 +68,8 @@ function get-avdgatewayinfo {
     "AVD Gateway Region URL: " + $avdgwinfo.RegionUrl | write-verbose -verbose
     "AVD Gateway Cluster URL: " + $avdgwinfo.ClusterUrl | write-verbose -verbose
    
-
 }
-#Create empty array for tracert
+
 
 function get-hopstogateway {
     param(
@@ -92,7 +88,7 @@ function get-hopstogateway {
     else{
     $latency = .\psping.exe ($avdgwip + ":443") | write-verbose -Verbose *>&1
     #$latency = ping -c 4 $avdgwip | Out-String
-    
+    $latency | get-member
     }
     $pspingstats = ($latency[-2] -split ',').trim()
     $pspinglatency = ($latency[-1] -split ',').trim()
@@ -109,15 +105,39 @@ function get-hopstogateway {
 
     # Trace route to the AVD Gateway up to 20 hops
     Write-Output "Gathering Traceroute information. This will take a minute"
-    $tracert = TRACERT.EXE -h 20 -w 1500 $avdgwip
-    Write-Output $tracert
+    #$tracert = TRACERT.EXE -h 20 -w 1500 $avdgwip
+
+
+
+    #Write-Output $tracert
     $regex = ‘\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b’
     $tracertips = $tracert | select-string -Pattern $regex -AllMatches | % { $_.Matches } | % { $_.Value } # Get all IP addresses from traceroute output
     $tracertarray += $tracertips
 
-#}
+}
+
+
+function get-avdgwlatency {
+    param(
+        [cmdletbinding()]
+        [Parameter(Mandatory=$true)]
+        [string]$avdgwip
+    )
+    
+    # Obtain latency of MSRDC connection to remote AVD gateway for any open session
+    #foreach ($gwip in $remoteavdgwip) {
+
+    Write-Verbose "[Begin tcpping to AVD Gateway IP: $avdgwip]`r`n" -Verbose
+    $latency = (.\tcping.exe -n 10 -j -h -f $avdgwip 443)
 
 }
+
+
+
+
+
+
+$avdgwip, $msrdcpid = get-avdprocesses
 
 
 
@@ -151,3 +171,6 @@ $avdgwapidetails = Invoke-WebRequest -Uri https://rdgateway.wvd.microsoft.com/ap
 #invoke-webrequest -uri https://management.azure.com/providers/Microsoft.Cdn/edgenodes?api-version=2019-12-31
 # https://docs.microsoft.com/en-us/azure/frontdoor/edge-locations-by-abbreviation 
 
+
+
+Test-NetConnection rdweb.wvd.microsoft.com -traceRoute -Hops 3 | select-object TraceRoute | foreach-object {test-connection $_.TraceRoute -count 1}
