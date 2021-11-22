@@ -126,15 +126,22 @@ function get-avdgwlatency {
     
     # Obtain latency of MSRDC connection to remote AVD gateway for any open session
     #foreach ($gwip in $remoteavdgwip) {
-
+    $tcplatency = @()
     Write-Verbose "[Begin tcpping to AVD Gateway IP: $avdgwip]`r`n" -Verbose
-    $latency = (.\tcping.exe -n 10 -j -h -f $avdgwip 443)
+    $latency = (.\tcping.exe -n 10 -js 5 -h -f $avdgwip 443)
+        foreach ($pingstat in $latency[4..10]) {
+            $tcppingstats = ($pingstat -split '- HTTP is open -').trim()
+            $tcplatency += $tcppingstats[0].trimend(":443/tcp") | ConvertFrom-StringData -Delimiter " "
+            $tcplatency2 += $tcppingstats[1].split(" ") | convertfrom-stringdata
+        }
+    
+        # $a[2].Split(" ") | ConvertFrom-StringData | % { $_.Matches } | % { $_.Value }
 
 }
 
 
 
-
+$latencytime = 
 
 
 $avdgwip, $msrdcpid = get-avdprocesses
@@ -173,4 +180,4 @@ $avdgwapidetails = Invoke-WebRequest -Uri https://rdgateway.wvd.microsoft.com/ap
 
 
 
-Test-NetConnection rdweb.wvd.microsoft.com -traceRoute -Hops 3 | select-object TraceRoute | foreach-object {test-connection $_.TraceRoute -count 1}
+Test-NetConnection $avdgwip -traceRoute -Hops 15 -OutVariable avdgwiplatency | select-object TraceRoute | foreach-object {test-connection $_.TraceRoute -resolvedestination -count 1}
